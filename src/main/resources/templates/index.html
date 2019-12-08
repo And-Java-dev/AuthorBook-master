@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1  class="h1" style="text-align: center;font-size:80px;background: url(/img/qw8f0ge5cz5na.png) no-repeat;-webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;" >Library</h1><br>
+<h3><a href="/book/add">Add Book</a> </h3>
+
+Books:
+<table border="1">
+    <tr style="background-color: aquamarine">
+        <td>image</td>
+        <td>id</td>
+        <td>title</td>
+        <td>description</td>
+        <td>count</td>
+        <td>price</td>
+        <td>Author.name</td>
+        <td>Author.surname</td>
+    </tr>
+<tr th:each="book:${books}">
+    <td><img th:if="${book.picUrl != null}" th:src="@{/book/getImage(picUrl=${book.picUrl})}" width="40px" height="40px"></td>
+    <td th:text="${book.id}"></td>
+    <td th:text="${book.title}"></td>
+    <td th:text="${book.description}"></td>
+    <td th:text="${book.count}"></td>
+    <td th:text="${book.price}"></td>
+    <td th:text="${book.author.name}"></td>
+    <td th:text="${book.author.surname}"></td>
+    <td style="background-color: darkcyan"><a th:href="@{/book/delete(id=${book.id})}">Delete</a>
+</tr>
+</table>
+<form action="/book/search" method="get">
+    <input type="text" name="keyword">
+    <input type="submit" value="search">
+</form>
+<hr>
+
+<h3> <a href="/author/add">Add Author</a> </h3>
+
+Authors:
+<table border="1" >
+    <tr style="background-color: aquamarine">
+        <td>id</td>
+        <td>name</td>
+        <td>surname</td>
+        <td>age</td>
+        <td>email</td>
+
+    </tr>
+    <tr th:each="author:${authors}">
+        <td th:text="${author.id}"></td>
+        <td th:text="${author.name}"></td>
+        <td th:text="${author.surname}"></td>
+        <td th:text="${author.age}"></td>
+        <td th:text="${author.email}"></td>
+    </tr>
+</table>
+</body>
+</html>

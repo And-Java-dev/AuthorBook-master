@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/book/add" method="post" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="Title"><br>
+    <textarea name="description" placeholder="Description"></textarea><br>
+    <input type="number" name="count" placeholder="Count"><br>
+    <input type="number" name="price" placeholder="Price"><br>
+    <select name="author.id">
+        <option th:each="a:${authors}" th:value="${a.id}" th:text="${a.name +' ' + a.surname}"></option>
+    </select><br>
+    <input name="picture" type="file"><br>
+    <input type="submit" value="Add">
+</form>
+
+</body>
+</html>
